@@ -1,50 +1,31 @@
-# lazysizes
+<!DOCTYPE html>
+<html lang="en">
 
-## 前言
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="picturefill.js"></script>
+</head>
 
-最近在学习图片懒加载的时候知道了这个名教lazysizes的懒加载库，在此总结一些用法。
+<body>
+  <!-- 不需要响应式时: -->
+  <!-- <img data-src="img/1.jpg" class="lazyload" /> -->
 
-## 安装
-
-```html
-<script src="lazysizes.min.js" async=""></script>
-<!-- 放在body结尾标签处 -->
-```
-
-## 在页面中使用
-
-### 不需要响应式时
-
-```html
-<img data-src="img/1.jpg" class="lazyload" />
-```
-
-### 需要响应式时
-
-```html
-<img data-srcset="img/1.jpg 1x, img/2.jpg 2x" class="lazyload" />
-<!--或者-->
-<img
+  <!-- 需要响应式时: -->
+  <!-- <img
 	data-sizes="auto"
     data-src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
 	  data-srcset="
       img/1.jpg 300w,
 	    img/2.jpg 600w,
 	    img/3.jpg 900w"
-  class="lazyload" />
-```
+  class="lazyload" /> -->
 
-### 使用picture标签时 
+  <!-- <img data-srcset="img/1.jpg 1x, img/2.jpg 2x" class="lazyload" /> -->
 
-在这里要使用picture标签时在兼容ie9的时候需要引入一个js在head标签内
-
-```html
-<script src="picturefill.js"></script>
-```
-
-接着可以使用了
-
-```html
+  <!-- 使用picture时 -->
   <script>
     window.lazySizesConfig = window.lazySizesConfig || {};
     window.lazySizesConfig.customMedia = {
@@ -62,27 +43,9 @@
     <!--[if IE 9]></video><![endif]-->
     <img data-src="img/3.jpg" class="lazyload" alt="image with artdirection" />
   </picture>
-```
 
-### 在需要有懒加载的不同状态时
 
-```html
-  <style>
-    .no-js img.lazyload {
-      display: none;
-    }
-  </style>
-
-  <!-- noscript pattern -->
-  <noscript>
-    <img src="img/2.jpg" />
-  </noscript>
-  <img src="img/3.jpg" data-src="img/2.jpg" class="lazyload" />
-  <script src="lazysizes.min.js"></script>
-</body>
-
-<!-- 或者还可以 -->
- <!-- 在距离底部500px时懒加载并设置一个过渡动画效果 三个类分别是图片未加载，图片加载中和图片已加载 -->
+  <!-- 在距离底部500px时懒加载并设置一个过渡动画效果 三个类分别是图片未加载，图片加载中和图片已加载 -->
   <style>
     .lazyload {
       opacity: 0;
@@ -105,6 +68,18 @@
     <p>...</p>
   </div>
 
+  <style>
+    .no-js img.lazyload {
+      display: none;
+    }
+  </style>
 
-```
+  <!-- noscript pattern -->
+  <noscript>
+    <img src="img/2.jpg" />
+  </noscript>
+  <img src="img/3.jpg" data-src="img/2.jpg" class="lazyload" />
+  <script src="lazysizes.min.js"></script>
+</body>
 
+</html>
